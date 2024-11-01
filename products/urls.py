@@ -8,10 +8,6 @@ router.register(r"category", views.CategoryViewSet, basename="category")
 router.register(r"productImage", views.ProductImageViewSet, basename="productImage")
 
 urlpatterns = [
+    path("slug/<slug:slug>/", views.ProductViewSet.as_view({"get": "retrieve_by_slug"}), name="product-detail-by-slug",),
     path("", include(router.urls)),
-    path(
-        "slug/<slug:slug>/",
-        views.ProductViewSet.as_view({"get": "retrieve_by_slug"}),
-        name="product-detail-by-slug",
-    ),
 ]

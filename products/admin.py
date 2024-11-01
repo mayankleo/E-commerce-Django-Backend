@@ -13,7 +13,7 @@ class ProductImageInline(
 class ProductAdmin(admin.ModelAdmin):
     list_display = [
         "product_name",
-        "product_registered",
+        "product_registered_at",
         "product_price",
         "product_quantity",
         "product_in_stock",

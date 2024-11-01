@@ -15,26 +15,26 @@ class CategorySerializer(serializers.ModelSerializer):
 
 
 class ProductSerializer(serializers.ModelSerializer):
-    product_category = CategorySerializer()
-    product_images = ProductImageSerializer(source="productimage_set", many=True)
+    category = CategorySerializer()
+    product_image_urls = ProductImageSerializer(source="productimage_set", many=True)
 
     class Meta:
         model = Product
         fields = "__all__"
-        extra_fields = ["product_images"]
+        extra_fields = ["product_image_urls"]
 
 
 class ProductListSerializer(serializers.ModelSerializer):
-    product_image = serializers.SerializerMethodField()
+    product_image_url = serializers.SerializerMethodField()
 
     class Meta:
         model = Product
-        exclude = ["product_registered", "product_updated", "product_quantity"]
+        exclude = ["product_registered_at", "product_updated_at", "product_quantity"]
 
     def get_product_image(self, obj) -> str:
         first_image = obj.productimage_set.first()
         if first_image:
             return ProductImageSerializer(first_image, context=self.context).data.get(
-                "image_url"
+                "product_image_url"
             )
         return ""
