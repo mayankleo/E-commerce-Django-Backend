@@ -42,13 +42,13 @@ def home(request):
 
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
+    path('admin/', admin.site.urls),
     
-    path("", home, name="home"),
+    path('', home, name='home'),
     
-    path("orders/", include("orders.urls")),
-    path("products/", include("products.urls")),
-    path("users/", include("users.urls")),
+    path('orders/', include('orders.urls')),
+    path('products/', include('products.urls')),
+    path('users/', include('users.urls')),
     
     path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
     path('api/docs/swagger/', SpectacularSwaggerView.as_view(), name='swagger-ui'),
