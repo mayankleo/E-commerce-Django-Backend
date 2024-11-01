@@ -2,6 +2,7 @@ from django.db import models
 from products.models import Product
 from users.models import Customer
 
+
 class Order(models.Model):
     customer_id = models.ForeignKey(Customer, on_delete=models.CASCADE)
     order_date = models.DateTimeField(auto_now_add=True)

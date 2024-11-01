@@ -16,4 +16,3 @@ class Customer(models.Model):
 
     def __str__(self):
         return f"{self.customer.first_name} {self.customer.last_name} | {self.customer.username}"
-
