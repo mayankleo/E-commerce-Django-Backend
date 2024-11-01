@@ -169,3 +169,9 @@ SIMPLE_JWT = {
     "AUTH_TOKEN_CLASSES": ("rest_framework_simplejwt.tokens.AccessToken",),
     "TOKEN_TYPE_CLAIM": "token_type",
 }
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'E-commerce Django Backend',
+    'DESCRIPTION': 'A REST APIs for E-commerce website with robust functionality.',
+    'VERSION': '1.0.0',
+}
