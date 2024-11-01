@@ -44,12 +44,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
 # Application definition
 
 INSTALLED_APPS = [
-    "django.contrib.admin",
-    "django.contrib.auth",
-    "django.contrib.contenttypes",
-    "django.contrib.sessions",
-    "django.contrib.messages",
-    "django.contrib.staticfiles",
     "orders.apps.OrdersConfig",
     "products.apps.ProductsConfig",
     "users.apps.UsersConfig",
@@ -57,17 +51,24 @@ INSTALLED_APPS = [
     "rest_framework",
     # 'rest_framework_simplejwt.token_blacklist',
     "drf_spectacular",
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
 ]
 
 MIDDLEWARE = [
+    'users.middleware.LogRequestMiddleware',
     "django.middleware.security.SecurityMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    "corsheaders.middleware.CorsMiddleware",
 ]
 
 ROOT_URLCONF = "backend.urls"
@@ -174,4 +175,20 @@ SPECTACULAR_SETTINGS = {
     'TITLE': 'E-commerce Django Backend',
     'DESCRIPTION': 'A REST APIs for E-commerce website with robust functionality.',
     'VERSION': '1.0.0',
+}
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'users.middleware': {
+            'handlers': ['console'],
+            'level': 'INFO',
+        },
+    },
 }
